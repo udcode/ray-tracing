@@ -1,0 +1,14 @@
+language: java
+sudo: false
+branches:
+  except:
+  - travis
+script:
+- while sleep 540; do echo "=====[ $SECONDS seconds still running ]====="; done &
+- mvn cobertura:cobertura
+- kill %1
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+    secure: Y8rz7b68unXUgFVvQ9eq4JJBtaQ3u3BWqGajE+3YqNKn4lrfhK3ta5m96dExVQcX1FrWSXxMYIBv7WZCakoS6KveRHOXYlSbgSS+AMj1wryR309d2ifoyZeTVW1m6u13fLBvUBNIuIaMTqpcsFfc6PX6PqoyUNay2TvmoX4qrF6wIRty1Ovy2jLmtI2Bxq0GSU+Omlbjnme6L6XIsQUND4m6NvGg8CIj+/S+zlS2jdkFf2IUcLhTXZuRAvCltcEpNT/4q/PonORxJFf7uCkuMxg3tlJBWAHsGKcAfcBWHeC/PBlnYa+PVAMaFagRTG9Xy6e7ti5QC2gYw/NapPmiAQrJ5D5i2KyituyivbbnlBpi2bhspQbEnHLTgR8KQMKFWtPBkEQrXzFY5Zx/BmobfSGcxKvK9wJmAXFZ/rvvx4EPnXmBLZWnzDi28GoTgPKtoXmObdCbiB1EhQHy/n2V8HdwdNLWVuUWUzAeuDp8rnKvH/w/xRyfQhhMmfwT6q5gGA9rshKz2JYWCdWrduF3PmxeJK80Y0JEIUZMqJ++j9Wh6UJJuU753zo0QBEYOFhk6QqUL7HdPnBJ6hNGgT4TmcIaa9pBcmi4Itl++qjgcsmbyvQVYWA6sq1msBtwfiAhCNNywCpfRiJZ1z4tVWkUyf1g4n8fbWcWC8VWjFGUF5w=
